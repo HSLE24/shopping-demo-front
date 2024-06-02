@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
@@ -18,6 +18,11 @@ const RegisterPage = () => {
   const [passwordError, setPasswordError] = useState("");
   const [policyError, setPolicyError] = useState(false);
   const error = useSelector((state) => state.user.error);
+  const { user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(userActions.userErrorClear());
+  }, []);
 
   const register = async (event) => {
     event.preventDefault();
@@ -51,6 +56,10 @@ const RegisterPage = () => {
       setFormData({ ...formData, [id]: value });
     }
   };
+
+  if (user) {
+    navigate("/");
+  }
 
   return (
     <Container className="register-area">
