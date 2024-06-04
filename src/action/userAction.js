@@ -36,6 +36,7 @@ const loginWithEmail =
       );
     } catch (err) {
       dispatch({ type: types.LOGIN_FAIL, payload: err.error });
+      dispatch(commonUiActions.showToastMessage(err.error, "error"));
     }
   };
 const logout = () => async (dispatch) => {
@@ -44,7 +45,23 @@ const logout = () => async (dispatch) => {
   sessionStorage.removeItem("token");
 };
 
-const loginWithGoogle = (token) => async (dispatch) => {};
+const loginWithGoogle = (token) => async (dispatch) => {
+  try {
+    dispatch({ type: types.GOOGLE_LOGIN_REQUEST });
+    const response = await api.post("/auth/google", { token });
+    if (response.status !== 200) {
+      throw new Error(response.status, ", ", response.error);
+    }
+    sessionStorage.setItem("token", response.data.token);
+    dispatch({ type: types.GOOGLE_LOGIN_SUCCESS, payload: response.data });
+    dispatch(
+      commonUiActions.showToastMessage("로그인을 완료했습니다.", "success")
+    );
+  } catch (err) {
+    dispatch({ type: types.GOOGLE_LOGIN_FAIL, payload: err.error });
+    dispatch(commonUiActions.showToastMessage(err.error, "error"));
+  }
+};
 
 const registerUser =
   ({ email, name, password }, navigate) =>
@@ -62,6 +79,7 @@ const registerUser =
       navigate("/");
     } catch (err) {
       dispatch({ type: types.REGISTER_USER_FAIL, payload: err.error });
+      dispatch(commonUiActions.showToastMessage(err.error, "error"));
     }
   };
 

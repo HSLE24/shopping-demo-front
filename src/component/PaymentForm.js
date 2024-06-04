@@ -12,11 +12,11 @@ const PaymentForm = ({
     <Row className="display-flex">
       <Col md={6} xs={12}>
         <Cards
-          cvc={cardValue.cvc}
-          expiry={cardValue.expiry}
-          focused={cardValue.focus}
-          name={cardValue.name}
-          number={cardValue.number}
+          cvc={cardValue.cvc || ""}
+          expiry={cardValue.expiry || ""}
+          focused={cardValue.focus || ""}
+          name={cardValue.name || ""}
+          number={cardValue.number || ""}
         />
       </Col>
       <Col md={6} xs={12}>
