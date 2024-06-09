@@ -17,11 +17,11 @@ const OrderReceipt = ({ cartList, totalPrice, user }) => {
             cartList.map((item, index) => (
               <div className="display-flex space-between">
                 <div>
-                  {cartList.length === 0 || !user ? "-" : item.productId.name}
+                  {cartList.length === 0 || user ? "-" : item.productId.name}
                 </div>
                 <div>
                   ₩{" "}
-                  {cartList.length === 0 || !user
+                  {cartList.length === 0 || user
                     ? 0
                     : currencyFormat(totalPrice)}
                 </div>
@@ -35,7 +35,7 @@ const OrderReceipt = ({ cartList, totalPrice, user }) => {
         </div>
         <div>
           <strong>
-            ₩ {cartList.length === 0 || !user ? 0 : currencyFormat(totalPrice)}
+            ₩ {cartList.length === 0 || user ? 0 : currencyFormat(totalPrice)}
           </strong>
         </div>
       </div>
@@ -43,7 +43,7 @@ const OrderReceipt = ({ cartList, totalPrice, user }) => {
         <Button
           variant="dark"
           className={
-            cartList.length === 0 || !user
+            cartList.length === 0 || user
               ? "payment-button-disable"
               : "payment-button"
           }
