@@ -23,7 +23,7 @@ const OrderReceipt = ({ cartList, totalPrice, user }) => {
                   ₩{" "}
                   {cartList.length === 0 || user
                     ? 0
-                    : currencyFormat(totalPrice)}
+                    : currencyFormat(item.productId.price * item.qty)}
                 </div>
               </div>
             ))}
