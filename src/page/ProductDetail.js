@@ -114,7 +114,12 @@ const ProductDetail = () => {
           </Button>
         </Col>
       </Row>
-      <ChatAPI productId={selectedProduct._id} stock={selectedProduct.stock} />
+      {user && (
+        <ChatAPI
+          productId={selectedProduct._id}
+          stock={selectedProduct.stock}
+        />
+      )}
     </Container>
   );
 };
