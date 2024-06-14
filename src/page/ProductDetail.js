@@ -8,6 +8,7 @@ import { cartActions } from "../action/cartAction";
 import { commonUiActions } from "../action/commonUiAction";
 import { currencyFormat } from "../utils/number";
 import "../style/productDetail.style.css";
+import ChatAPI from "../component/ChatAPI";
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
@@ -113,6 +114,7 @@ const ProductDetail = () => {
           </Button>
         </Col>
       </Row>
+      <ChatAPI productId={selectedProduct._id} stock={selectedProduct.stock} />
     </Container>
   );
 };

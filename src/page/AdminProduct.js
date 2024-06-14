@@ -85,6 +85,9 @@ const AdminProduct = () => {
         <Button className="mt-2 mb-2" onClick={handleClickNewItem}>
           Add New Item +
         </Button>
+        <span className="inform-text">
+          ※입고 요청이 들어온 경우 빨간색으로 표시됩니다.
+        </span>
 
         <ProductTable
           header={tableHeader}

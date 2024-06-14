@@ -76,7 +76,7 @@ const Login = () => {
               <GoogleLogin
                 onSuccess={handleGoogleLogin}
                 onError={() => {
-                  console.log("Login Failed");
+                  //console.log("Login Failed");
                 }}
               />
             </div>

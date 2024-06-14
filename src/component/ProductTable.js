@@ -23,8 +23,18 @@ const ProductTable = ({ header, data, deleteItem, openEditForm }) => {
                 <th>{currencyFormat(item.price)}</th>
                 <th>
                   {Object.keys(item.stock).map((size, index) => (
-                    <div key={index}>
-                      {size}:{item.stock[size]}
+                    <div
+                      key={index}
+                      style={{
+                        color:
+                          item.asked &&
+                          item.asked.includes &&
+                          item.asked.includes(size)
+                            ? "red"
+                            : "black",
+                      }}
+                    >
+                      {size}: {item.stock[size]}
                     </div>
                   ))}
                 </th>
