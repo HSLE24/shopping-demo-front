@@ -29,7 +29,8 @@ const loginWithEmail =
       if (response.status !== 200) {
         throw new Error(response.status, ", ", response.error);
       }
-      sessionStorage.setItem("token", response.data.token);
+      //sessionStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response.data.token);
       dispatch({ type: types.LOGIN_SUCCESS, payload: response.data });
       dispatch(
         commonUiActions.showToastMessage("로그인을 완료했습니다.", "success")
@@ -42,7 +43,8 @@ const loginWithEmail =
 const logout = () => async (dispatch) => {
   dispatch({ type: types.LOGOUT });
 
-  sessionStorage.removeItem("token");
+  //sessionStorage.removeItem("token");
+  localStorage.removeItem("token");
 };
 
 const loginWithGoogle = (token) => async (dispatch) => {
@@ -52,7 +54,8 @@ const loginWithGoogle = (token) => async (dispatch) => {
     if (response.status !== 200) {
       throw new Error(response.status, ", ", response.error);
     }
-    sessionStorage.setItem("token", response.data.token);
+    //sessionStorage.setItem("token", response.data.token);
+    localStorage.setItem("token", response.data.token);
     dispatch({ type: types.GOOGLE_LOGIN_SUCCESS, payload: response.data });
     dispatch(
       commonUiActions.showToastMessage("로그인을 완료했습니다.", "success")
